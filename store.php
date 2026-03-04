@@ -1,5 +1,5 @@
 <?php
-
+include "db.php";
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $address = $_POST['address'];
@@ -13,25 +13,12 @@ $code = $_POST['code'];
 
 $skills_string = implode(",", $skills);   
 
-$data = $fname . "|" .             
-        $lname . "|" .
-        $address . "|" .
-        $country . "|" .
-        $gender . "|" .
-        $skills_string . "|" .
-        $username . "|" .
-        $password . "|" .
-        $department . "|" .
-        $code . "\n";
+$sql = "INSERT INTO users
+(fname,lname,address,country,gender,skills,username,password,department,code)
+VALUES
+('$fname','$lname','$address','$country','$gender','$skills_string','$username','$password','$department','$code')";
 
-$fp = fopen("data.txt", "a");
-
-if(!$fp){
-    die("Error opening file");
-}
-
-fwrite($fp, $data);
-fclose($fp);
+mysqli_query($conn,$sql);
 
 header("Location: list.php");
 exit;

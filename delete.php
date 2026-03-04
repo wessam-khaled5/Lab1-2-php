@@ -1,10 +1,9 @@
 <?php
+include "db.php";
+
 $id = $_GET['id'];
-$lines = file("data.txt");
-if(isset($lines[$id])){
-    unset($lines[$id]);
-    file_put_contents("data.txt", implode("", $lines));
-}
+
+mysqli_query($conn,"DELETE FROM users WHERE id=$id");
 
 header("Location: list.php");
 exit;

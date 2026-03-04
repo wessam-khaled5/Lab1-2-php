@@ -1,19 +1,19 @@
 <?php
+include "db.php";
 
 $id = $_GET['id'];
 
-$lines = file("data.txt");
+$result = mysqli_query($conn,"SELECT * FROM users WHERE id=$id");
 
-if(isset($lines[$id])){
+$user = mysqli_fetch_assoc($result);
 
-    $user = explode("|", trim($lines[$id]));
+echo "<h3>User Details</h3>";
 
-    echo "<h3>User Details</h3>";
-    echo "First Name: $user[0] <br>";
-    echo "Last Name: $user[1] <br>";
-    echo "Email: $user[2] <br>";
-    echo "Skills: $user[3] <br>";
-
-}else{
-    echo "User not found";
-}
+echo "First Name: ".$user['fname']."<br>";
+echo "Last Name: ".$user['lname']."<br>";
+echo "Address: ".$user['address']."<br>";
+echo "Country: ".$user['country']."<br>";
+echo "Gender: ".$user['gender']."<br>";
+echo "Skills: ".$user['skills']."<br>";
+echo "Username: ".$user['username']."<br>";
+echo "Department: ".$user['department']."<br>";

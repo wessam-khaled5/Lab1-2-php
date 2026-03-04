@@ -1,39 +1,32 @@
 <?php
+include "db.php";
 
-$lines = file("data.txt");
+$result = mysqli_query($conn,"SELECT * FROM users");
 
-echo "<table border='1' cellpadding='5'>";
+echo "<table border='1'>";
 echo "<tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Address</th>
-        <th>Country</th>
-        <th>Gender</th>
-        <th>Skills</th>
-        <th>Username</th>
-        <th>Department</th>
-        <th>Actions</th>
-      </tr>";
+<th>ID</th>
+<th>First</th>
+<th>Last</th>
+<th>Country</th>
+<th>Gender</th>
+<th>Username</th>
+<th>Actions</th>
+</tr>";
 
-foreach($lines as $index => $line){
-
-    $user = explode("|", trim($line));
+while($row = mysqli_fetch_assoc($result)){
 
     echo "<tr>";
-    echo "<td>$index</td>";
-    echo "<td>$user[0]</td>"; 
-    echo "<td>$user[1]</td>";
-    echo "<td>$user[2]</td>"; 
-    echo "<td>$user[3]</td>";
-    echo "<td>$user[4]</td>"; 
-    echo "<td>$user[5]</td>"; 
-    echo "<td>$user[6]</td>";
-    echo "<td>$user[8]</td>"; 
+    echo "<td>".$row['id']."</td>";
+    echo "<td>".$row['fname']."</td>";
+    echo "<td>".$row['lname']."</td>";
+    echo "<td>".$row['country']."</td>";
+    echo "<td>".$row['gender']."</td>";
+    echo "<td>".$row['username']."</td>";
 
     echo "<td>
-            <a href='view.php?id=$index'>View</a> |
-            <a href='delete.php?id=$index'>Delete</a>
+            <a href='view.php?id=".$row['id']."'>View</a> |
+            <a href='delete.php?id=".$row['id']."'>Delete</a>
           </td>";
 
     echo "</tr>";
