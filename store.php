@@ -30,6 +30,7 @@ if(!$fp){
     die("Error opening file");
 }
 
+
 fwrite($fp, $data);
 fclose($fp);
 
