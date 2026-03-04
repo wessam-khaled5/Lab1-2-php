@@ -18,7 +18,10 @@ $sql = "INSERT INTO users
 VALUES
 ('$fname','$lname','$address','$country','$gender','$skills_string','$username','$password','$department','$code')";
 
+
 mysqli_query($conn,$sql);
+=======
+
 
 header("Location: list.php");
 exit;
