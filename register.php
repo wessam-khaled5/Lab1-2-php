@@ -98,6 +98,7 @@ if(skills.length === 0){
 document.getElementById("skillError").innerText =
 "Please select at least one skill";
 
+
 return false;
 
 }
