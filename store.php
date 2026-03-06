@@ -28,6 +28,7 @@ move_uploaded_file($tmp,"uploads/".$image);
 $sql = "INSERT INTO users
 (fname,lname,address,country,gender,skills,username,password,image)
 
+
 VALUES
 
 ('$fname','$lname','$address','$country','$gender','$skills_string','$username','$password','$image')";
