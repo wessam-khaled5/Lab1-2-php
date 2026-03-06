@@ -1,102 +1,111 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registration Form</title>
-    <style>
-        body {
-            font-family: Arial;
-        }
-        .error {
-            color: red;
-            font-size: 14px;
-            
-        }
-       
-    </style>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<title>Register</title>
+
 </head>
-<body>
 
-<h2>Registration Form</h2>
+<body class="bg-light">
 
-<form id="regForm" action="store.php" method="POST">
+<div class="container mt-5">
 
-    First Name:
-    <input type="text" name="fname" required pattern="[A-Za-z]+"
-           title="Only letters allowed">
-    <br>
+<div class="card shadow p-4">
 
-    Last Name:
-    <input type="text" name="lname" required pattern="[A-Za-z]+"
-           title="Only letters allowed">
-    <br>
+<h3 class="text-center mb-4">Register</h3>
 
-    Address:
-    <textarea name="address" required></textarea>
-    <br>
+<form method="POST" action="store.php" onsubmit="return validateForm()">
 
-    Country:
-    <select name="country" required>
-        <option value="">Select Country</option>
-        <option value="Egypt">Egypt</option>
-        <option value="USA">USA</option>
-        <option value="UK">UK</option>
-    </select>
-    <br>
+<div class="mb-3">
+<label>First Name</label>
+<input type="text" name="fname" class="form-control" required>
+</div>
 
-    Gender:
-    <input type="radio" name="gender" value="Male" required> Male
-    <input type="radio" name="gender" value="Female"> Female
-    <br><br>
+<div class="mb-3">
+<label>Last Name</label>
+<input type="text" name="lname" class="form-control" required>
+</div>
 
-    Skills:
-    <input type="checkbox" name="skills[]" value="PHP"> PHP
-    <input type="checkbox" name="skills[]" value="MySQL"> MySQL
-    <input type="checkbox" name="skills[]" value="J2SE"> J2SE
-    <input type="checkbox" name="skills[]" value="PostgreSQL"> PostgreSQL
-    <br>
-    <span class="error" id="Error"></span>
-    <br>
+<div class="mb-3">
+<label>Address</label>
+<input type="text" name="address" class="form-control" required>
+</div>
 
-    Username:
-    <input type="text" name="username" required>
-    <br>
+<div class="mb-3">
+<label>Country</label>
+<input type="text" name="country" class="form-control" required>
+</div>
 
-    Password:
-    <input type="password" name="password" required minlength="6">
-    <br>
+<div class="mb-3">
+<label>Gender</label><br>
 
-    Department:
-    <input type="text" name="department" value="OpenSource" readonly>
-    <br>
+<input type="radio" name="gender" value="Male" required> Male
+<input type="radio" name="gender" value="Female"> Female
 
-    Enter Code: <b>Sh68Sa</b>
-    <input type="text" name="code" required>
-    <br>
-    <span class="error" id="codeError"></span>
-    <br><br>
+</div>
 
-    <input type="submit" value="Submit">
-    <input type="reset" value="Reset">
+<div class="mb-3">
+
+<label>Skills</label><br>
+
+<input type="checkbox" name="skills[]" value="PHP"> PHP
+<input type="checkbox" name="skills[]" value="MySQL"> MySQL
+<input type="checkbox" name="skills[]" value="Java"> Java
+
+<p id="skillError" style="color:red;"></p>
+
+</div>
+
+<div class="mb-3">
+
+<label>Username</label>
+<input type="text" name="username" class="form-control" required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Password</label>
+<input type="password" name="password" class="form-control" required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Profile Picture</label>
+<input type="file" name="image">
+
+</div>
+
+<button class="btn btn-primary w-100">Register</button>
 
 </form>
 
+</div>
+</div>
+
 
 <script>
-document.getElementById("regForm").addEventListener("submit", function(e){
-    let skills = document.querySelectorAll('input[name="skills[]"]:checked');
-    let code = document.querySelector('input[name="code"]').value;
 
-    document.getElementById("Error").innerText = "";
-    document.getElementById("codeError").innerText = "";
+function validateForm(){
 
-    if(skills.length === 0){
+let skills = document.querySelectorAll('input[name="skills[]"]:checked');
 
-        document.getElementById("skillError").innerText =
-        "Please select at least one skill";
-        e.preventDefault();
-    }
+if(skills.length === 0){
 
-});
+document.getElementById("skillError").innerText =
+"Please select at least one skill";
+
+return false;
+
+}
+
+return true;
+
+}
+
 </script>
 
 </body>
